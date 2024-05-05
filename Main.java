@@ -3,31 +3,46 @@ import company.exceptions.InvalidAgeException;
 import company.interfaces.Messenger;
 import company.implementations.EmailMessenger;
 import company.utils.MathUtils;
-import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
+        Person[] people = new Person[5];
+        final int b = 10;
+        Messenger emailMessenger = new EmailMessenger();
         try {
-            Person person = new Person("Michał", 22);
-            System.out.println("Name: " + person.getName());
-            System.out.println("Age: " + person.getAge());
+            people[0] = new Person("John Doe", 30);
+        } catch (InvalidAgeException e) {
+            System.out.println("Invalid age: " + e.getMessage());
+        }
+        try {
+            people[1] = new Person("John Xoe", 20);
+        } catch (InvalidAgeException e) {
+            System.out.println("Invalid age: " + e.getMessage());
+        }
+        try {
+            people[2] = new Person("John Aoe", 10);
+        } catch (InvalidAgeException e) {
+            System.out.println("Invalid age: " + e.getMessage());
+        }
+        try {
+            people[3] = new Person("John Soe", 40);
+        } catch (InvalidAgeException e) {
+            System.out.println("Invalid age: " + e.getMessage());
+        }
+        try {
+            people[4] = new Person("John Boe", 60);
         } catch (InvalidAgeException e) {
             System.out.println("Invalid age: " + e.getMessage());
         }
         
-        //Lubie korzystać z klasy scanner i swierdziłem że świetnie się tutaj sprawdzi.
-        Scanner wczytaj= new Scanner(System.in);
-        int a,b,suma;
-        System.out.print("podaj a:");
-        a = wczytaj.nextInt();
-        System.out.print("podaj b:");
-        b =wczytaj.nextInt();
-        suma = MathUtils.add(a, b);
-        wczytaj.close();
-        System.out.println("Suma "+a+"+"+b+"="+suma);
-
-        Messenger emailMessenger = new EmailMessenger();
-
-        emailMessenger.sendMessage("Suma "+a+"+"+b+"="+suma);
+        //Chyba jednak scanner nie byl tak dobry jak myslałem
+        for (Person person : people) {
+            if (person != null) {
+            int a = person.getAge();
+            int suma = MathUtils.add(a, b);
+            emailMessenger.sendMessage("Suma dla "+person.getName()+"="+suma);
+            }
+        }
     }
 }
