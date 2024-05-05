@@ -15,7 +15,7 @@ public class Main {
             System.out.println("Invalid age: " + e.getMessage());
         }
         
-        
+        //Lubie korzystać z klasy scanner i swierdziłem że świetnie się tutaj sprawdzi.
         Scanner wczytaj= new Scanner(System.in);
         int a,b,suma;
         System.out.print("podaj a:");
